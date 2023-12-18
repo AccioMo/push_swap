@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:35:47 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/15 19:57:51 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/17 20:33:15 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,25 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
+# include "ftprintf/ft_printf.h"
+# include "libft/libft.h"
 
-void	ra(int *nbrs, int len);
-void	rra(int *nbrs, int len);
-void	ft_swap(int *a, int *b);
-int		ft_push(int *nbs, int len);
+/*			structs			*/
+typedef struct s_stack
+{
+	int				nb;
+	int				index;
+	int				z_index;
+	struct s_stack	*next;
+}	t_stack;
 
-/*			from libft			*/
-int		ft_atoi(char *str);
-char	**ft_split(char *str, char c);
+/*			functions			*/
+void	ra(t_stack *nbrs);
+void	rra(t_stack *nbrs);
+void	ft_swap(t_stack *a, t_stack *b);
+int		ft_push(t_stack *nbs);
+t_stack	*ft_create_t_stack(int *nbs, int len);
+void	rotate_up(t_stack *stack);
+void	rotate_down(t_stack *stack);
 
 #endif

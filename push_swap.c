@@ -6,48 +6,59 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:35:50 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/15 19:56:31 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/17 23:27:55 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	swap(int *a, int *b)
+static void	swap(t_stack *a, t_stack *b)
 {
-	int	c;
+	t_stack	c;
 
 	c = *a;
 	*a = *b;
 	*b = c;
+	b->next = a->next;
+	a->next = b;
+	a->index -= 1;
+	b->index +=1;
 }
 
-static void	rotate_up(int *array, int len)
+void	rotate_up(t_stack *stack)
 {
-	int	i;
-
-	i = 0;
-	while (i++ < len - 1)
-		swap((array + i - 1), (array + i));
+	while (stack->next)
+	{
+		swap(stack, stack->next);
+		stack = stack->next;
+	}
 }
 
-static void	rotate_down(int *array, int len)
+void	rotate_down(t_stack *stack)
 {
-	while (len-- > 1)
-		swap((array + len - 1), (array + len));
+	t_stack	*head;
+	int		len;
+
+	len = 0;
+	head = stack;
+	while (stack->next)
+		stack = stack->next;
+	while (stack-- != head)
+		swap(stack, stack->next);
 }
 
-void	ra(int *nbrs, int len)
+void	ra(t_stack *stack)
 {
-	if (*nbrs < *(nbrs + 1))
-		ft_swap(nbrs, (nbrs + 1));
-	rotate_up(nbrs, len);
+	if (stack->z_index == stack->next->z_index + 1)
+		ft_swap(stack, stack->next);
+	rotate_up(stack);
 	write(1, "ra\n", 3);
 }
 
-void	rra(int *nbrs, int len)
+void	rra(t_stack *stack)
 {
-	if (*nbrs > *(nbrs + 1))
-		ft_swap(nbrs, (nbrs + 1));
-	rotate_down(nbrs, len);
+	if (stack->z_index == stack->next->z_index + 1)
+		ft_swap(stack, stack->next);
+	rotate_down(stack);
 	write(1, "rra\n", 4);
 }
