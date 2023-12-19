@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:39:21 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/17 23:40:16 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/19 18:35:01 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,15 @@
 int	ft_getsm(t_stack *stack)
 {
 	t_stack	*sm;
-	int		s;
-	int		i;
 
-	i = 0;
-	s = 0;
 	sm = stack;
 	while (stack)
 	{
 		if (sm->nb > stack->nb)
-			s = i;
-		i++;
+			sm = stack;
 		stack = stack->next;
 	}
-	return (s);
+	return (sm->index);
 }
 
 int	ft_getlen(char **array)
@@ -63,33 +58,32 @@ int	*ft_get_nbs(char **input, int len)
 	return (nbs);
 }
 
-void	ft_push_swap(t_stack *stack, int len)
+void	ft_push_swap(t_stack *stack_a, t_stack *stack_b, int len)
 {
 	int	sm;
 	int	sa;
 
 	sa = len;
-	while (stack)
+	while (stack_a)
 	{
-		// ft_printf("sm: %d; stack: %d\n", sm, stack->nb);
-		sm = ft_getsm(stack);
-		if (sm == 0)
+		sm = ft_getsm(stack_a);
+		// ft_printf("%d\n", sm);
+		if (sm == stack_a->index)
 		{
-			if (!ft_push(stack))
+			if (ft_sorted(stack_a))
 				break ;
-			stack = stack->next;
+			pb(&stack_a, &stack_b);
 			len--;
 		}
-		else if (stack->z_index == stack->next->z_index + 1)
-			ft_swap(stack, stack->next);
-		else if (sm <= len / 2)
-			ra(stack);
+		else if (sm == stack_a->next->index && stack_a->z_index < len / 2)
+			ft_swap(stack_a, stack_a->next);
+		else if (sm < len / 2)
+			ra(stack_a);
 		else
-			rra(stack);
+			rra(stack_a);
 	}
-	sa -= len;
-	while (sa--)
-		write(1, "pa\n", 3);
+	while (stack_b)
+		pa(&stack_a, &stack_b);
 }
 
 int	ft_check_input(char **input, int len)
@@ -124,11 +118,13 @@ int	ft_getpnm(int *nbs, int len, int pivot)
 
 void	ft_print_stack(t_stack *stack)
 {
+	ft_printf("___________\n");
 	while (stack)
 	{
 		ft_printf("| %d: %d |\n", stack->nb, stack->z_index);
 		stack = stack->next;
 	}
+	ft_printf("___________\n");
 }
 
 int	main(int argc, char *argv[])
@@ -137,6 +133,7 @@ int	main(int argc, char *argv[])
 	int		*nbs;
 	int		len;
 	t_stack	*stack_a;
+	t_stack	*stack_b;
 
 	if (argc <= 1)
 		return (0);
@@ -153,14 +150,16 @@ int	main(int argc, char *argv[])
 		nbs = ft_get_nbs(argv + 1, len);
 	}
 	stack_a = ft_create_t_stack(nbs, len);
+	stack_b = NULL;
 	// while (chunks--)
 	// {
 	// 	chunk = ft_fill_chunk(stack_a, chunk_size, len);
 	// 	ft_arrange_b(stack_b, chunk);
 	// }
 	// ft_arrange_a(stack_a, stack_b, len);
-	// ft_print_stack(stack_a);
-	ft_push_swap(stack_a, len);
+	ft_push_swap(stack_a, stack_b, len);
+	ft_print_stack(stack_a);
+	ft_print_stack(stack_b);
 	// ra(stack_a);
 	// ft_swap(stack_a, stack_a->next);
 	// ft_print_stack(stack_a);
@@ -170,7 +169,7 @@ int	main(int argc, char *argv[])
 	// ra(stack_a);
 	// ft_printf("\n");
 	// ft_print_stack(stack_a);
-	free(stack_a);
+	// free(stack_a);
 	return (0);
 }
 /*ARG=`ruby -e "puts (0..3).to_a.shuffle.join(' ')"`; ./a.out $ARG | wc -l*/

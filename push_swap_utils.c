@@ -6,17 +6,16 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:44:55 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/17 23:31:55 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/19 17:34:20 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_sorted(t_stack *stack)
+int	ft_sorted(t_stack *stack)
 {
 	while (stack)
 	{
-		// ft_printf("\n%d, %d\n", stack->index, stack->z_index);
 		if (stack->index != stack->z_index)
 			return (0);
 		stack = stack->next;
@@ -24,12 +23,28 @@ static int	ft_sorted(t_stack *stack)
 	return (1);
 }
 
-int	ft_push(t_stack *stack)
+void	pb(t_stack **stack_a, t_stack **stack_b)
 {
-	if (!ft_sorted(stack))
-		return (write(1, "pb\n", 3));
+	if (!*stack_b)
+		*stack_b = *stack_a;
 	else
-		return (0);
+		(*stack_b)->next = *stack_a;
+	*stack_a = (*stack_a)->next;
+	(*stack_a - 1)->next = NULL;
+	rotate_down(*stack_b);
+	write(1, "pb\n", 3);
+}
+
+void	pa(t_stack **stack_a, t_stack **stack_b)
+{
+	rotate_up(*stack_b);
+	*stack_a = *stack_a - 1;
+	(*stack_a)->next = (*stack_a + 1);
+	if (*stack_a != *stack_b)
+		(*stack_a - 1)->next = NULL;
+	else
+		*stack_b = NULL;
+	write(1, "pa\n", 3);
 }
 
 void	ft_swap(t_stack *a, t_stack *b)
@@ -42,6 +57,6 @@ void	ft_swap(t_stack *a, t_stack *b)
 	b->next = a->next;
 	a->next = b;
 	a->index -= 1;
-	b->index +=1;
+	b->index += 1;
 	write(1, "sa\n", 3);
 }

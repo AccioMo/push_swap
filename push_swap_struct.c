@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 19:25:45 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/17 20:25:07 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/19 14:44:19 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ t_stack	*ft_create_t_stack(int *nbs, int len)
 		stack->index = i;
 		stack->z_index = get_z_index(nbs, stack->nb, len);
 		stack->next = stack + 1;
+		stack->prev = stack - 1;
 		if (i + 1 == len)
 			stack->next = NULL;
+		if (i == 0)
+			stack->prev = NULL;
 		stack++;
 		i++;
 	}

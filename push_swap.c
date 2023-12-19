@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:35:50 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/17 23:27:55 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/19 14:22:52 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	swap(t_stack *a, t_stack *b)
 	b->next = a->next;
 	a->next = b;
 	a->index -= 1;
-	b->index +=1;
+	b->index += 1;
 }
 
 void	rotate_up(t_stack *stack)
