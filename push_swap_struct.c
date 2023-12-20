@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 19:25:45 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/20 19:28:55 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/20 20:25:30 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,18 @@ static int	get_z_index(int *nbs, int target, int len)
 	return (z);
 }
 
-void	get_t_stack_costs(t_stack *stack, int len)
+int	get_z_cost(stack)
+{
+	int	
+}
+
+static void	get_t_stack_costs(t_stack *stack, int len)
 {
 	while (stack)
 	{
-		stack->t_index = ft_get_target(stack, len);
-		
+		stack->z_cost = 
+		stack->t_index = ft_get_target(stack, len)->index;
+		stack->t_cost = 
 		stack = stack->next;
 	}
 }

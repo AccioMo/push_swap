@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:39:21 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/20 19:26:51 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/20 20:25:20 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,11 @@ void	ft_push_swap(t_stack *stack, int len)
 	{
 		if (ft_get_diff(stack, target) == 1)
 			ft_swap(stack, stack->next);
-		if ()
-		else if (target->index < len / 2)
-			ra(stack);
-		else if (target->index >= len / 2)
-			rra(stack);
+		if (stack->t_cost < stack->z_cost)
+			if (stack->index < len / 2)
+				ra(stack);
+			else if (stack->index >= len / 2)
+				rra(stack);
 	}
 }
 
