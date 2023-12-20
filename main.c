@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:39:21 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/19 18:35:01 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/20 19:26:51 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,32 +58,70 @@ int	*ft_get_nbs(char **input, int len)
 	return (nbs);
 }
 
-void	ft_push_swap(t_stack *stack_a, t_stack *stack_b, int len)
+int	ft_get_diff(t_stack *current, t_stack *target)
 {
-	int	sm;
-	int	sa;
+	if (current->index > target->index)
+		return (current->index - target->index);
+	else
+		return (target->index - current->index);
+}
 
-	sa = len;
-	while (stack_a)
+static t_stack	*get_target(t_stack *stack, int index)
+{
+	if (index < 0)
+		return (NULL);
+	while (stack && stack->z_index != index)
+		stack = stack->next;
+	return (stack);
+}
+
+static t_stack	*get_closest(t_stack *before, t_stack *after, int len)
+{
+	if (!before)
+		return (after);
+	else if (!after)
+		return (before);
+	if (before->index < after->index)
 	{
-		sm = ft_getsm(stack_a);
-		// ft_printf("%d\n", sm);
-		if (sm == stack_a->index)
-		{
-			if (ft_sorted(stack_a))
-				break ;
-			pb(&stack_a, &stack_b);
-			len--;
-		}
-		else if (sm == stack_a->next->index && stack_a->z_index < len / 2)
-			ft_swap(stack_a, stack_a->next);
-		else if (sm < len / 2)
-			ra(stack_a);
+		if (len - after->index < before->index)
+			return (after);
 		else
-			rra(stack_a);
+			return (before);
 	}
-	while (stack_b)
-		pa(&stack_a, &stack_b);
+	else
+	{
+		if (len - before->index < after->index)
+			return (before);
+		else
+			return (after);
+	}
+}
+
+t_stack	*ft_get_target(t_stack *stack, int len)
+{
+	t_stack	*before;
+	t_stack	*after;
+
+	before = get_target(stack, stack->z_index - 1);
+	after = get_target(stack, stack->z_index + 1);
+	return (get_closest(before, after, len));
+}
+
+void	ft_push_swap(t_stack *stack, int len)
+{
+	t_stack	*target;
+	int r = 4;
+
+	while (r--)
+	{
+		if (ft_get_diff(stack, target) == 1)
+			ft_swap(stack, stack->next);
+		if ()
+		else if (target->index < len / 2)
+			ra(stack);
+		else if (target->index >= len / 2)
+			rra(stack);
+	}
 }
 
 int	ft_check_input(char **input, int len)
@@ -157,7 +195,8 @@ int	main(int argc, char *argv[])
 	// 	ft_arrange_b(stack_b, chunk);
 	// }
 	// ft_arrange_a(stack_a, stack_b, len);
-	ft_push_swap(stack_a, stack_b, len);
+	// ft_printf("%d\n",ft_get_target(stack_a, len)->nb);
+	ft_push_swap(stack_a, len);
 	ft_print_stack(stack_a);
 	ft_print_stack(stack_b);
 	// ra(stack_a);

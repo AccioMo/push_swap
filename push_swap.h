@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:35:47 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/19 17:22:04 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/20 19:28:21 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ typedef struct s_stack
 	int				nb;
 	int				index;
 	int				z_index;
+	int				t_index;
+	int				z_cost;
+	int				t_cost;
 	struct s_stack	*next;
-	struct s_stack	*prev;
 }	t_stack;
 
 /*			functions			*/

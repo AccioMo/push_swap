@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:44:55 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/19 17:34:20 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/20 15:47:52 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 	if (!*stack_b)
 		*stack_b = *stack_a;
 	else
-		(*stack_b)->next = *stack_a;
+		(*stack_a - 1)->next = *stack_a;
 	*stack_a = (*stack_a)->next;
 	(*stack_a - 1)->next = NULL;
 	rotate_down(*stack_b);

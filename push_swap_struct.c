@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 19:25:45 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/19 14:44:19 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/20 19:28:55 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@ static int	get_z_index(int *nbs, int target, int len)
 	return (z);
 }
 
+void	get_t_stack_costs(t_stack *stack, int len)
+{
+	while (stack)
+	{
+		stack->t_index = ft_get_target(stack, len);
+		
+		stack = stack->next;
+	}
+}
+
 t_stack	*ft_create_t_stack(int *nbs, int len)
 {
 	t_stack	*stack;
@@ -38,13 +48,11 @@ t_stack	*ft_create_t_stack(int *nbs, int len)
 		stack->index = i;
 		stack->z_index = get_z_index(nbs, stack->nb, len);
 		stack->next = stack + 1;
-		stack->prev = stack - 1;
 		if (i + 1 == len)
 			stack->next = NULL;
-		if (i == 0)
-			stack->prev = NULL;
 		stack++;
 		i++;
 	}
+	get_t_stack_costs(stack - len, len);
 	return (stack - len);
 }
