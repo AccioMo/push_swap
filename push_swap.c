@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:35:50 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/20 17:45:15 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/21 16:06:17 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	rotate_down(t_stack *stack)
 void	ra(t_stack *stack)
 {
 	// if (stack->z_index == stack->next->z_index + 1)
-		ft_swap(stack, stack->next);
+		// ft_swap(stack, stack->next);
 	rotate_up(stack);
 	write(1, "ra\n", 3);
 }

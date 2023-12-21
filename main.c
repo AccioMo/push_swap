@@ -6,11 +6,22 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:39:21 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/20 20:25:20 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/21 16:05:52 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_print_stack(t_stack *stack)
+{
+	ft_printf("___________\n");
+	while (stack)
+	{
+		ft_printf("| %d: i: %d |\n", stack->nb, stack->z_index);
+		stack = stack->next;
+	}
+	ft_printf("___________\n");
+}
 
 int	ft_getsm(t_stack *stack)
 {
@@ -66,61 +77,55 @@ int	ft_get_diff(t_stack *current, t_stack *target)
 		return (target->index - current->index);
 }
 
-static t_stack	*get_target(t_stack *stack, int index)
-{
-	if (index < 0)
-		return (NULL);
-	while (stack && stack->z_index != index)
-		stack = stack->next;
-	return (stack);
-}
+// static void	ft_repeat(int n, void (*f)(t_stack *), t_stack *arg)
+// {
+// 	while (n-- > 0)
+// 		f(arg);
+// }
 
-static t_stack	*get_closest(t_stack *before, t_stack *after, int len)
+static int	z_cost(int z, int t)
 {
-	if (!before)
-		return (after);
-	else if (!after)
-		return (before);
-	if (before->index < after->index)
-	{
-		if (len - after->index < before->index)
-			return (after);
-		else
-			return (before);
-	}
-	else
-	{
-		if (len - before->index < after->index)
-			return (before);
-		else
-			return (after);
-	}
-}
-
-t_stack	*ft_get_target(t_stack *stack, int len)
-{
-	t_stack	*before;
-	t_stack	*after;
-
-	before = get_target(stack, stack->z_index - 1);
-	after = get_target(stack, stack->z_index + 1);
-	return (get_closest(before, after, len));
+	if (z < 0)
+		z = -z;
+	if (t < 0)
+		t = -t;
+	return (z < t);
 }
 
 void	ft_push_swap(t_stack *stack, int len)
 {
-	t_stack	*target;
-	int r = 4;
-
+	int	r = 10;
+	
 	while (r--)
 	{
-		if (ft_get_diff(stack, target) == 1)
+		ft_get_costs(stack, len);
+		if (stack->next->z_index == stack->z_index - 1 || stack->next->z_index == len - 1)
+			ra(stack);
+		else if (stack->next->z_index == stack->z_index + 1)
 			ft_swap(stack, stack->next);
-		if (stack->t_cost < stack->z_cost)
-			if (stack->index < len / 2)
-				ra(stack);
-			else if (stack->index >= len / 2)
+		else if (z_cost(stack->z_cost, stack->t_cost))
+		{
+			ft_printf("z\n");
+			if (stack->z_cost > 0)
 				rra(stack);
+			else
+			{
+				ft_swap(stack, stack->next);
+				ra(stack);
+			}
+		}
+		else
+		{
+			ft_printf("t\n");
+			if (stack->t_cost > 0)
+			{
+				ft_swap(stack, stack->next);
+				ra(stack);
+			}
+			else
+				rra(stack);
+		}
+		ft_print_stack(stack);
 	}
 }
 
@@ -152,17 +157,6 @@ int	ft_getpnm(int *nbs, int len, int pivot)
 		i++;
 	}
 	return (-1);
-}
-
-void	ft_print_stack(t_stack *stack)
-{
-	ft_printf("___________\n");
-	while (stack)
-	{
-		ft_printf("| %d: %d |\n", stack->nb, stack->z_index);
-		stack = stack->next;
-	}
-	ft_printf("___________\n");
 }
 
 int	main(int argc, char *argv[])
