@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:39:21 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/21 16:05:52 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/24 00:32:57 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_print_stack(t_stack *stack)
 	ft_printf("___________\n");
 	while (stack)
 	{
-		ft_printf("| %d: i: %d |\n", stack->nb, stack->z_index);
+		ft_printf("| %d: i: %d |\n", stack->nb, stack->index);
 		stack = stack->next;
 	}
 	ft_printf("___________\n");
@@ -83,51 +83,14 @@ int	ft_get_diff(t_stack *current, t_stack *target)
 // 		f(arg);
 // }
 
-static int	z_cost(int z, int t)
-{
-	if (z < 0)
-		z = -z;
-	if (t < 0)
-		t = -t;
-	return (z < t);
-}
-
-void	ft_push_swap(t_stack *stack, int len)
-{
-	int	r = 10;
-	
-	while (r--)
-	{
-		ft_get_costs(stack, len);
-		if (stack->next->z_index == stack->z_index - 1 || stack->next->z_index == len - 1)
-			ra(stack);
-		else if (stack->next->z_index == stack->z_index + 1)
-			ft_swap(stack, stack->next);
-		else if (z_cost(stack->z_cost, stack->t_cost))
-		{
-			ft_printf("z\n");
-			if (stack->z_cost > 0)
-				rra(stack);
-			else
-			{
-				ft_swap(stack, stack->next);
-				ra(stack);
-			}
-		}
-		else
-		{
-			ft_printf("t\n");
-			if (stack->t_cost > 0)
-			{
-				ft_swap(stack, stack->next);
-				ra(stack);
-			}
-			else
-				rra(stack);
-		}
-		ft_print_stack(stack);
-	}
-}
+// static int	z_cost(int z, int t)
+// {
+// 	if (z < 0)
+// 		z = -z;
+// 	if (t < 0)
+// 		t = -t;
+// 	return (z < t);
+// }
 
 int	ft_check_input(char **input, int len)
 {
@@ -143,20 +106,192 @@ int	ft_check_input(char **input, int len)
 	return (0);
 }
 
-int	ft_getpnm(int *nbs, int len, int pivot)
+t_stack	*ft_get_target(t_stack *stack, int len, int index)
 {
-	int	i;
+	if (index < 0)
+		return (stack + (len - 1));
+	else if (index >= len)
+		return (stack);
+	while (stack && stack->z_index != index)
+		stack = stack->next;
+	return (stack);
+}
+
+int	ft_short(int nbr, int len)
+{
+	return (nbr - (nbr > len / 2) * len);
+}
+
+void	ft_rotate(t_stack *stack, int r)
+{
+	if (r < 0)
+	{
+		while (r++)
+			rra(stack);
+	}
+	else
+	{
+		while (r--)
+			ra(stack);
+	}
+
+}
+
+int	ft_abs(int nbr)
+{
+	if (nbr < 0)
+		return (-nbr);
+	return (nbr);
+}
+
+void	ft_push_b(t_stack **from, t_stack **to)
+{
+	*from = (*from)->next;
+	(*from - 1)->next = NULL;
+	if (*to)
+	{
+		(*from - 2)->next = (*from - 1);
+		rotate_down(*to);
+	}
+	else
+		*to = (*from - 1);
+	write(1, "pb\n", 3);
+}
+
+void	ft_push_min_max(t_stack **a, t_stack **b, int len)
+{
+	int	min;
+	int	max;
+
+	min = ft_short(ft_get_target(*a, len, 0)->index, len);
+	max = ft_short(ft_get_target(*a, len, len - 1)->index, len);
+	if (ft_abs(min) < ft_abs(max))
+	{
+		ft_rotate(*a, min);
+		ft_push_b(a, b);
+		ft_rotate(*a, max - min);
+		ft_push_b(a, b);
+	}
+	else
+	{
+		ft_rotate(*a, max);
+		ft_push_b(a, b);
+		ft_rotate(*a, min - max);
+		ft_push_b(a, b);
+	}
+}
+
+int	ft_get_smaller(t_stack *stack, int z)
+{
+	t_stack	*head;
+	int		x;
+	int		i;
+
+	x = -1;
+	i = 0;
+	head = stack;
+	while (stack)
+	{
+		if (stack->z_index > x && stack->z_index < z)
+			x = stack->z_index;
+		stack = stack->next;
+	}
+	if (x == INT_MAX)
+	{
+		while (head && head->z_index != 0 && i++ >= 0)
+			head = head->next;
+		return (i);
+	}
+	while (head && head->z_index != x && i++ >= 0)
+		head = head->next;
+	return (i);
+}
+
+void	ft_push_to_b(t_stack **a, t_stack **b, int len_a)
+{
+	int	cost;
+	int	len_b;
+
+	ft_push_min_max(a, b, len_a);
+	len_a -= 2;
+	len_b = 2;
+	while (len_a > 3)
+	{
+		cost = ft_short(ft_get_smaller(*b, (*a)->z_index), len_b);
+		ft_rotate(*b, cost);
+		ft_push_b(a, b);
+		len_a--;
+		len_b++;
+	}
+}
+
+void	ft_sort_three(t_stack *stack)
+{
+	if (stack->z_index < stack->next->z_index)
+	{
+		if (stack->next->z_index > stack->next->next->z_index)
+			rra(stack);
+	}
+	else if (stack->z_index > stack->next->next->z_index)
+		ra(stack);
+	if (stack->z_index > stack->next->z_index)
+		ft_swap(stack, stack->next);
+}
+
+int	ft_get_larger(t_stack *stack, int z)
+{
+	t_stack	*head;
+	int		x;
+	int		i;
 
 	i = 0;
-	while (i <= len--)
+	x = INT_MAX;
+	head = stack;
+	while (stack)
 	{
-		if (*(nbs + i) < pivot)
-			return (i);
-		else if (*(nbs + len) < pivot)
-			return (len);
-		i++;
+		if (stack->z_index < x && stack->z_index > z)
+			x = stack->z_index;
+		stack = stack->next;
 	}
-	return (-1);
+	if (x == INT_MAX)
+	{
+		while (head && head->z_index != 0 && i++ >= 0)
+			head = head->next;
+		return (i);
+	}
+	while (head && head->z_index != x && i++ >= 0)
+		head = head->next;
+	return (i);
+}
+
+void	ft_push_a(t_stack **a, t_stack **b, int len_b)
+{
+	if (!b)
+		return ;
+	ra(*b);
+	(*b + len_b - 1)->next = *a;
+	*a -= 1;
+	if (*a == *b)
+		*b = NULL;
+	else
+		(*b + len_b - 2)->next = NULL;
+	write(1, "pa\n", 3);
+}
+
+void	ft_push_to_a(t_stack **a, t_stack **b, int len_b)
+{
+	int	cost;
+	int	len_a;
+
+	len_a = 3;
+	while (len_b)
+	{
+		cost = ft_short(ft_get_larger(*a, (*b)->z_index), len_a);
+		ft_rotate(*a, cost);
+		ft_push_a(a, b, len_b);
+		len_a++;
+		len_b--;
+	}
 }
 
 int	main(int argc, char *argv[])
@@ -183,25 +318,11 @@ int	main(int argc, char *argv[])
 	}
 	stack_a = ft_create_t_stack(nbs, len);
 	stack_b = NULL;
-	// while (chunks--)
-	// {
-	// 	chunk = ft_fill_chunk(stack_a, chunk_size, len);
-	// 	ft_arrange_b(stack_b, chunk);
-	// }
-	// ft_arrange_a(stack_a, stack_b, len);
-	// ft_printf("%d\n",ft_get_target(stack_a, len)->nb);
-	ft_push_swap(stack_a, len);
-	ft_print_stack(stack_a);
-	ft_print_stack(stack_b);
-	// ra(stack_a);
-	// ft_swap(stack_a, stack_a->next);
-	// ft_print_stack(stack_a);
-	// rra(stack_a);
-	// ft_printf("\n");
-	// ft_print_stack(stack_a);
-	// ra(stack_a);
-	// ft_printf("\n");
-	// ft_print_stack(stack_a);
+	ft_push_to_b(&stack_a, &stack_b, len);
+	ft_sort_three(stack_a);
+	ft_push_to_a(&stack_a, &stack_b, len - 3);
+	int r = ft_short(ft_get_target(stack_a, len, 0)->index, len);
+	ft_rotate(stack_a, r);
 	// free(stack_a);
 	return (0);
 }

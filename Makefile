@@ -8,7 +8,7 @@ SRC = main.c push_swap.c push_swap_utils.c push_swap_struct.c
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(SRC) $(HEADER)
-	$(CC) $(FLAGS) $(SRC) $(LIBS) -o $(NAME)
+	$(CC) $(FLAGS) $(SRC) $(LIBS) -o $(NAME) -g
 
 # bonus: $(BONUS_SRC)
 # 	$(CC) $(FLAGS) $(BONUS_SRC) -o $(BONUS_NAME) $(LIBFT)
