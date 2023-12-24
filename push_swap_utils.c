@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:44:55 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/20 15:47:52 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/24 16:40:08 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,21 @@ void	pa(t_stack **stack_a, t_stack **stack_b)
 	write(1, "pa\n", 3);
 }
 
-void	ft_swap(t_stack *a, t_stack *b)
+void	ft_sb(t_stack *a, t_stack *b)
+{
+	t_stack	c;
+
+	c = *a;
+	*a = *b;
+	*b = c;
+	b->next = a->next;
+	a->next = b;
+	a->index -= 1;
+	b->index += 1;
+	write(1, "sb\n", 3);
+}
+
+void	ft_sa(t_stack *a, t_stack *b)
 {
 	t_stack	c;
 

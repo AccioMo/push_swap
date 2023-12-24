@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:35:50 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/21 16:06:17 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/24 16:55:36 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,20 @@ void	rotate_down(t_stack *stack)
 		swap(stack, stack->next);
 }
 
-void	ra(t_stack *stack)
+void	ft_rx(t_stack *stack, char s)
 {
 	// if (stack->z_index == stack->next->z_index + 1)
 		// ft_swap(stack, stack->next);
 	rotate_up(stack);
-	write(1, "ra\n", 3);
+	write(1, "r", 1);
+	write(1, &s, 1);
+	write(1, "\n", 1);
 }
 
-void	rra(t_stack *stack)
+void	ft_rrx(t_stack *stack, char s)
 {
-	// if (stack->z_index == stack->next->z_index + 1)
-		// ft_swap(stack, stack->next);
 	rotate_down(stack);
-	write(1, "rra\n", 4);
+	write(1, "rr", 2);
+	write(1, &s, 1);
+	write(1, "\n", 1);
 }
