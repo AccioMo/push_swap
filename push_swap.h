@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:35:47 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/25 18:00:48 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/25 18:33:31 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-# include "ftprintf/ft_printf.h"
+# include "libftprintf/ft_printf.h"
 # include "libft/libft.h"
 
 /*			structs			*/

@@ -7,14 +7,17 @@ SRC = main.c push_swap_input.c push_swap_tools.c push_swap_utils.c push_swap_str
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(SRC) $(HEADER)
+$(NAME): $(LIBS) $(SRC) $(HEADER)
 	$(CC) $(FLAGS) $(SRC) $(LIBS) -o $(NAME) -g
 
 # bonus: $(BONUS_SRC)
 # 	$(CC) $(FLAGS) $(BONUS_SRC) -o $(BONUS_NAME) $(LIBFT)
 
+%.a: %/ %/Makefile
+	make -C $< re && make -C $< clean && mv -v $<$@ $@
+
 clean:
-	rm -f $(OBJ) $(BONUS_OBJ)
+	rm -f $(LIBS)
 
 fclean: clean
 	rm -f $(NAME)
