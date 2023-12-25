@@ -6,61 +6,54 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:35:50 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/24 16:55:36 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/25 17:14:13 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	swap(t_stack *a, t_stack *b)
+void	ft_rr(t_stack *a, t_stack *b)
 {
-	t_stack	c;
-
-	c = *a;
-	*a = *b;
-	*b = c;
-	b->next = a->next;
-	a->next = b;
-	a->index -= 1;
-	b->index += 1;
+	rotate_up(a);
+	rotate_up(b);
+	write(1, "rr\n", 3);
 }
 
-void	rotate_up(t_stack *stack)
+void	ft_rrr(t_stack *a, t_stack *b)
 {
-	while (stack->next)
+	rotate_down(a);
+	rotate_down(b);
+	write(1, "rrr\n", 4);
+}
+
+void	ft_rotate(t_stack *stack, int r, char s)
+{
+	if (r < 0)
 	{
-		swap(stack, stack->next);
-		stack = stack->next;
+		while (r++)
+			ft_rrx(stack, s);
+	}
+	else
+	{
+		while (r--)
+			ft_rx(stack, s);
 	}
 }
 
-void	rotate_down(t_stack *stack)
+void	ft_full_rotate(t_stack *a, t_stack *b, int costa, int costb)
 {
-	t_stack	*head;
-	int		len;
-
-	len = 0;
-	head = stack;
-	while (stack->next)
-		stack = stack->next;
-	while (stack-- != head)
-		swap(stack, stack->next);
-}
-
-void	ft_rx(t_stack *stack, char s)
-{
-	// if (stack->z_index == stack->next->z_index + 1)
-		// ft_swap(stack, stack->next);
-	rotate_up(stack);
-	write(1, "r", 1);
-	write(1, &s, 1);
-	write(1, "\n", 1);
-}
-
-void	ft_rrx(t_stack *stack, char s)
-{
-	rotate_down(stack);
-	write(1, "rr", 2);
-	write(1, &s, 1);
-	write(1, "\n", 1);
+	while (costa > 0 && costb > 0)
+	{
+		ft_rr(a, b);
+		costa--;
+		costb--;
+	}
+	while (costa < 0 && costb < 0)
+	{
+		ft_rrr(a, b);
+		costa++;
+		costb++;
+	}
+	ft_rotate(a, costa, 'a');
+	ft_rotate(b, costb, 'b');
 }

@@ -8,9 +8,9 @@ W='\033[0m'
 T=0
 MIN=99999999999
 MAX=0
-while [ $i -le 200 ]
+while [ $i -le 400 ]
 do
-	ARG=`ruby -e "puts (1..500).to_a.shuffle.join(' ')"`
+	ARG=`ruby -e "puts (0..99).to_a.shuffle.join(' ')"`
 	A=`./push_swap $ARG`
 	N=`./push_swap $ARG | wc -l`
 	V=$(./push_swap $ARG | ./checker_Mac $ARG)
@@ -20,10 +20,10 @@ do
 	MAX=$(($MAX < $N ? $N : $MAX))
 	if [ "$V" == "KO" ]; then C="$R"; else C="$G"; fi
 	echo -e "$N $C$V$W"
-	if [ $N -gt 5499 ]
+	if [ $N -gt 699 ]
 	then
 		echo -e "$R ERROR"
 		echo -e "$ARG  $W"
 	fi
 done
-echo -e "$B Average: $(($T / 200)); Min: $MIN; Max: $MAX $W"
+echo -e "$B Average: $(($T / 400)); Min: $MIN; Max: $MAX $W"

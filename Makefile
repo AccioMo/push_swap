@@ -3,7 +3,7 @@ FLAGS = -Wall -Wextra -Werror
 NAME = push_swap
 LIBS = libft.a libftprintf.a
 HEADER = push_swap.h
-SRC = main.c push_swap.c push_swap_utils.c push_swap_struct.c
+SRC = main.c push_swap_input.c push_swap_tools.c push_swap_utils.c push_swap_struct.c push_swap_rotations.c push_swap_targets.c push_swap_a.c push_swap_b.c
 
 all: $(NAME)
 

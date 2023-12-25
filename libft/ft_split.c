@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 20:47:41 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/14 17:04:00 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/25 17:34:20 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	**ft_split(char const *s, char c)
 	words = count_words(s, c);
 	tab = (char **)malloc((words + 1) * sizeof(char *));
 	if (!tab)
-		return (NULL);
+		exit(1);
 	tab[words] = NULL;
 	while (i < words)
 	{
