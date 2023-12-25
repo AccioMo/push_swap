@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:35:47 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/25 18:33:31 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/25 18:57:25 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int		ft_stack_len(t_stack *stack);
 /*			input			*/
 int		ft_getlen(char **array);
 int		*ft_get_nbs(char **input, int len);
-void	ft_free(char **input, int len);
-int		ft_check_input(char **input, int len);
+void	ft_free(char **input);
+void	ft_check_input(char **input, int len);
 t_stack	*ft_get_stack(int argc, char *argv[]);
 
 /*			tools			*/
