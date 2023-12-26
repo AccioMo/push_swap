@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:35:47 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/26 03:59:24 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/26 04:19:34 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
+/*			tools				*/
 t_stack	*ft_create_t_stack(int *nbs, int len);
 int		ft_stack_len(t_stack *stack);
+int		ft_sorted(t_stack *stack);
+int		ft_is_int_max(char *str);
 
 /*			input			*/
 int		ft_getlen(char **array);
@@ -42,20 +45,20 @@ void	ft_free(char **input);
 int		ft_check_input(char **input, int len);
 t_stack	*ft_get_stack(int argc, char *argv[]);
 
-/*			tools			*/
-int		ft_sorted(t_stack *stack);
-int		ft_is_int_max(char *str);
-
+/*			functions			*/
+char	*ft_fstrjoin(char *istr, char *buffer);
+char	*ft_read(int fd, char *buffer);
+void	ft_apply_istr(t_stack *a, t_stack *b, char **istr);
 
 /*			instructions			*/
-int		swap(t_stack *a, t_stack *b);
-int		swap_both(t_stack *a, t_stack *b);
-int		push_a(t_stack **a, t_stack **b);
-int		push_b(t_stack **a, t_stack **b);
-int		rotate(t_stack *stack);
-int		reverse_rotate(t_stack *stack);
-int		rotate_both(t_stack *a, t_stack *b);
-int		reverse_rotate_both(t_stack *a, t_stack *b);
+void	swap(t_stack *a, t_stack *b);
+void	swap_both(t_stack *a, t_stack *b);
+void	push_a(t_stack **a, t_stack **b);
+void	push_b(t_stack **a, t_stack **b);
+void	rotate(t_stack *stack);
+void	reverse_rotate(t_stack *stack);
+void	rotate_both(t_stack *a, t_stack *b);
+void	reverse_rotate_both(t_stack *a, t_stack *b);
 
 /*			debugging		*/
 void	ft_print_stack(t_stack *stack);

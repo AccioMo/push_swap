@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:39:21 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/26 03:03:05 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/26 04:10:56 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	main(int argc, char *argv[])
 
 	stack_a = ft_get_stack(argc, argv);
 	stack_b = NULL;
+	// if (ft_sorted(stack_a))
+	// 	return (0);
 	ft_push_to_b(&stack_a, &stack_b);
 	ft_sort_three(stack_a);
 	ft_push_to_a(&stack_a, &stack_b);

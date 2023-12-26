@@ -6,7 +6,7 @@ LIBS = libft.a libftprintf.a
 HEADER = push_swap.h
 BONUS_HEADER = push_swap_bonus.h
 SRC = push_swap_main.c push_swap_input.c push_swap_tools.c push_swap_utils.c push_swap_struct.c push_swap_rotations.c push_swap_targets.c push_swap_a.c push_swap_b.c
-BONUS_SRC = checker_main_bonus.c checker_tools_bonus.c checker_utils2_bonus.c checker_utils_bonus.c checker_input_bonus.c
+BONUS_SRC = checker_main_bonus.c checker_functions_bonus.c checker_tools_bonus.c checker_utils2_bonus.c checker_utils_bonus.c checker_input_bonus.c
 
 all: $(NAME)
 
