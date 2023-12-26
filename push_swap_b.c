@@ -14,13 +14,11 @@
 
 int	ft_get_first_small(t_stack *stack, int len, int z)
 {
-	t_stack	*head;
 	int		x;
 	int		i;
 
 	x = -1;
 	i = 0;
-	head = stack;
 	while (stack)
 	{
 		if (x == -1 && stack->z_index < z)

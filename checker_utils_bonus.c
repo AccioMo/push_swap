@@ -26,11 +26,9 @@ void	rotate(t_stack *stack)
 void	reverse_rotate(t_stack *stack)
 {
 	t_stack	*head;
-	int		len;
 
 	if (!stack)
 		return ;
-	len = 0;
 	head = stack;
 	while (stack->next)
 		stack = stack->next;

@@ -49,9 +49,7 @@ void	rotate_up(t_stack *stack)
 void	rotate_down(t_stack *stack)
 {
 	t_stack	*head;
-	int		len;
 
-	len = 0;
 	head = stack;
 	while (stack->next)
 		stack = stack->next;
