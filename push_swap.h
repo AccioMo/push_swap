@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:35:47 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/26 03:02:04 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/26 04:27:01 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,5 @@ void	ft_push_to_a(t_stack **a, t_stack **b);
 int		ft_get_first_small(t_stack *stack, int len, int z);
 void	ft_push_b(t_stack **a, t_stack **b);
 void	ft_push_to_b(t_stack **a, t_stack **b);
-
-/*			debugging		*/
-void	ft_print_stack(t_stack *stack);
 
 #endif

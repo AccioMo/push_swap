@@ -6,22 +6,11 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:39:21 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/26 04:10:56 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/26 04:27:26 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_print_stack(t_stack *stack)
-{
-	ft_printf("___________\n");
-	while (stack)
-	{
-		ft_printf("| %d: i: %d |\n", stack->nb, stack->index);
-		stack = stack->next;
-	}
-	ft_printf("___________\n");
-}
 
 int	main(int argc, char *argv[])
 {
@@ -30,8 +19,8 @@ int	main(int argc, char *argv[])
 
 	stack_a = ft_get_stack(argc, argv);
 	stack_b = NULL;
-	// if (ft_sorted(stack_a))
-	// 	return (0);
+	if (ft_sorted(stack_a))
+		return (0);
 	ft_push_to_b(&stack_a, &stack_b);
 	ft_sort_three(stack_a);
 	ft_push_to_a(&stack_a, &stack_b);
@@ -39,4 +28,3 @@ int	main(int argc, char *argv[])
 	free(stack_a);
 	return (0);
 }
-/*ARG=`ruby -e "puts (0..3).to_a.shuffle.join(' ')"`; ./a.out $ARG | wc -l*/

@@ -8,12 +8,12 @@ W='\033[0m'
 T=0
 MIN=99999999999
 MAX=0
-while [ $i -le 400 ]
+while [ $i -le 1000 ]
 do
 	ARG=`ruby -e "puts (0..99).to_a.shuffle.join(' ')"`
 	A=`./push_swap $ARG`
 	N=`./push_swap $ARG | wc -l`
-	V=$(./push_swap $ARG | ./checker_Mac $ARG)
+	V=$(./push_swap $ARG | ./checker_linux $ARG)
 	i=$(($i + 1))
 	T=$(($T + $N))
 	MIN=$(($MIN > $N ? $N : $MIN))
@@ -26,4 +26,4 @@ do
 		echo -e "$ARG  $W"
 	fi
 done
-echo -e "$B Average: $(($T / 400)); Min: $MIN; Max: $MAX $W"
+echo -e "$B Average: $(($T / 1000)); Min: $MIN; Max: $MAX $W"

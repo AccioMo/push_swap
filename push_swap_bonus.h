@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:35:47 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/26 04:19:34 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/26 04:26:25 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,5 @@ void	rotate(t_stack *stack);
 void	reverse_rotate(t_stack *stack);
 void	rotate_both(t_stack *a, t_stack *b);
 void	reverse_rotate_both(t_stack *a, t_stack *b);
-
-/*			debugging		*/
-void	ft_print_stack(t_stack *stack);
 
 #endif
