@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 20:47:41 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/25 17:34:20 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/25 23:05:46 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	**ft_split(char const *s, char c)
 		if (s == NULL)
 		{
 			ft_freeall((void **)tab, *(tab + i));
-			return (NULL);
+			exit(1);
 		}
 		i++;
 	}

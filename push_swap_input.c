@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 17:23:56 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/25 19:09:58 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/26 01:34:49 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	*ft_get_nbs(char **input, int len)
 {
 	int		*nbs;
 
+	if (ft_check_input(input, len))
+		return (write(2, "Error\n", 6), NULL);
 	nbs = (int *)malloc(len * sizeof(int));
 	if (!nbs)
 		return (NULL);
@@ -47,23 +49,33 @@ void	ft_free(char **input)
 	free(input);
 }
 
-void	ft_check_input(char **input, int len)
+int	ft_check_input(char **input, int len)
 {
 	char	*str;
 	int		i;
 
-	i = 0;
-	while (i < len)
+	while (*input)
 	{
-		str = *(input + i);
+		i = 1;
+		str = *input;
+		if (ft_is_int_max(str) == 0)
+			return (1);
+		while (*(input + i))
+		{
+			if (ft_strncmp(str, *(input + i), -1) == 0)
+				return (1);
+			i++;
+		}
 		while (*str)
 		{
-			if (*str < '0' || *str > '9')
-				return (ft_free(input), write(1, "Error\n", 6), exit(1));
+			if (*str != '-' && !ft_isdigit(*str))
+				return (1);
 			str++;
 		}
-		i++;
+		input++;
 	}
+	input -= len;
+	return (0);
 }
 
 t_stack	*ft_get_stack(int argc, char *argv[])
@@ -78,7 +90,6 @@ t_stack	*ft_get_stack(int argc, char *argv[])
 	{
 		input = ft_split(*(argv + 1), ' ');
 		len = ft_getlen(input);
-		ft_check_input(input, len);
 		nbs = ft_get_nbs(input, len);
 		ft_free(input);
 	}
