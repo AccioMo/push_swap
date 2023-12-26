@@ -25,7 +25,7 @@ static char	*ft_strncpy(char *dest, char *src, int n)
 	return (dest);
 }
 
-char	*ft_fstrjoin(char *istr, char *buffer)
+char	*ft_realloc(char *istr, char *buffer)
 {
 	char	*str;
 	int		l_istr;
@@ -92,7 +92,7 @@ int	ft_apply_istr(t_stack *a, t_stack *b, char **istr)
 	t_stack	*anchor;
 
 	anchor = a;
-	while (istr && *istr)
+	while (*istr)
 	{
 		if (ft_status_code(&a, &b, *istr) == 1)
 			return (free(anchor), write(2, "Error\n", 6));

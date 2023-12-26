@@ -74,7 +74,7 @@ char	**ft_split(char *s, char c)
 	words = count_words(s, c);
 	tab = (char **)malloc((words + 1) * sizeof(char *));
 	if (!tab)
-		return (free(s), exit(1), NULL);
+		return (exit(1), NULL);
 	tab[words] = NULL;
 	while (i < words)
 	{
@@ -87,6 +87,5 @@ char	**ft_split(char *s, char c)
 		}
 		i++;
 	}
-	free(s);
 	return (tab);
 }

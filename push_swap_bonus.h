@@ -45,7 +45,7 @@ int		ft_check_input(char **input, int len);
 t_stack	*ft_get_stack(int argc, char *argv[]);
 
 /*			functions			*/
-char	*ft_fstrjoin(char *istr, char *buffer);
+char	*ft_realloc(char *istr, char *buffer);
 char	*ft_read(int fd, char *buffer);
 int		ft_apply_istr(t_stack *a, t_stack *b, char **istr);
 
