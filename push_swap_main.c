@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:39:21 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/25 18:00:23 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/26 03:03:05 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	ft_print_stack(t_stack *stack)
 	}
 	ft_printf("___________\n");
 }
-
 
 int	main(int argc, char *argv[])
 {

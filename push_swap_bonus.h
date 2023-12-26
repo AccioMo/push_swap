@@ -1,17 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push_swap_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:35:47 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/26 03:02:04 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/26 03:59:24 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef PUSH_SWAP_BONUS_H
+# define PUSH_SWAP_BONUS_H
+
+# define BUFFER_SIZE 10
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -41,42 +43,19 @@ int		ft_check_input(char **input, int len);
 t_stack	*ft_get_stack(int argc, char *argv[]);
 
 /*			tools			*/
-int		ft_abs(int nbr);
-int		ft_short(int nbr, int len);
-void	swap(t_stack *a, t_stack *b);
-void	rotate_up(t_stack *stack);
-void	rotate_down(t_stack *stack);
-
-/*			general_utils			*/
 int		ft_sorted(t_stack *stack);
-void	ft_sa(t_stack *a, t_stack *b);
-void	ft_sb(t_stack *a, t_stack *b);
-void	ft_rx(t_stack *stack, char s);
-void	ft_rrx(t_stack *stack, char s);
-
-/*			rotations			*/
-void	ft_rr(t_stack *a, t_stack *b);
-void	ft_rrr(t_stack *a, t_stack *b);
-void	ft_rotate(t_stack *stack, int r, char s);
-void	ft_full_rotate(t_stack *a, t_stack *b, int costa, int costb);
-
-/*			targets			*/
-int		ft_get_larger(t_stack *stack, int z);
-int		ft_get_smaller(t_stack *stack, int z);
-int		ft_get_target(t_stack *stack, int index);
-void	ft_sort_three(t_stack *stack);
 int		ft_is_int_max(char *str);
 
-/*			stack_a			*/
-void	ft_get_costs(t_stack *a, t_stack *b, int len_a, int len_b);
-t_stack	*ft_barter(t_stack *stack);
-void	ft_push_a(t_stack **a, t_stack **b);
-void	ft_push_to_a(t_stack **a, t_stack **b);
 
-/*			stack_b			*/
-int		ft_get_first_small(t_stack *stack, int len, int z);
-void	ft_push_b(t_stack **a, t_stack **b);
-void	ft_push_to_b(t_stack **a, t_stack **b);
+/*			instructions			*/
+int		swap(t_stack *a, t_stack *b);
+int		swap_both(t_stack *a, t_stack *b);
+int		push_a(t_stack **a, t_stack **b);
+int		push_b(t_stack **a, t_stack **b);
+int		rotate(t_stack *stack);
+int		reverse_rotate(t_stack *stack);
+int		rotate_both(t_stack *a, t_stack *b);
+int		reverse_rotate_both(t_stack *a, t_stack *b);
 
 /*			debugging		*/
 void	ft_print_stack(t_stack *stack);

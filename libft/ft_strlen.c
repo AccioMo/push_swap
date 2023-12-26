@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 21:19:28 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/11/15 17:17:15 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/26 02:20:38 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (*str)
 	{
 		str++;

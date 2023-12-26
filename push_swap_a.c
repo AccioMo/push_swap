@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 17:12:39 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/25 17:53:31 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/26 02:53:34 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,13 @@ t_stack	*ft_barter(t_stack *stack)
 	return (best);
 }
 
-void	ft_push_a(t_stack **a, t_stack **b, int len_b)
+void	ft_push_a(t_stack **a, t_stack **b)
 {
+	int	len_b;
+
 	if (!b)
 		return ;
+	len_b = ft_stack_len(*b);
 	rotate_up(*b);
 	(*b + len_b - 1)->next = *a;
 	*a -= 1;
@@ -71,7 +74,7 @@ void	ft_push_to_a(t_stack **a, t_stack **b)
 		ft_get_costs(*a, *b, len_a, len_b);
 		best = ft_barter(*b);
 		ft_full_rotate(*a, *b, best->costa, best->costb);
-		ft_push_a(a, b, len_b);
+		ft_push_a(a, b);
 		len_a++;
 		len_b--;
 	}
