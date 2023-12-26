@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 17:03:02 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/25 17:54:19 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/26 04:46:52 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	ft_push_to_b(t_stack **a, t_stack **b)
 			pivot += chunk_size;
 		cost = ft_short(cost, len_a);
 		ft_rotate(*a, cost, 'a');
+		if (ft_sorted(*a) && *b == NULL)
+			return ;
 		ft_push_b(a, b);
 		len_a--;
 		len_b++;

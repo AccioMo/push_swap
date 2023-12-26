@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 17:23:56 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/26 01:34:49 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/26 05:10:58 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ t_stack	*ft_get_stack(int argc, char *argv[])
 		exit(0);
 	else if (argc == 2)
 	{
-		input = ft_split(*(argv + 1), ' ');
+		input = ft_split(ft_strdup(*(argv + 1)), ' ');
 		len = ft_getlen(input);
 		nbs = ft_get_nbs(input, len);
 		ft_free(input);

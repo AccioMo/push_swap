@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 04:05:37 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/26 04:17:11 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/26 05:05:04 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,19 +87,19 @@ static int	ft_status_code(t_stack **a, t_stack **b, char *istr)
 	return (0);
 }
 
-void	ft_apply_istr(t_stack *a, t_stack *b, char **istr)
+int	ft_apply_istr(t_stack *a, t_stack *b, char **istr)
 {
 	t_stack	*anchor;
 
 	anchor = a;
-	while (*istr)
+	while (istr && *istr)
 	{
 		if (ft_status_code(&a, &b, *istr) == 1)
-			return (free(anchor), write(2, "Error\n", 6), exit(1));
+			return (free(anchor), write(2, "Error\n", 6));
 		istr++;
 	}
 	if (ft_sorted(a) && b == NULL)
-		return (free(anchor), write(1, "OK\n", 3), exit(0));
+		return (free(anchor), write(1, "OK\n", 3));
 	else
-		return (free(anchor), write(1, "KO\n", 3), exit(0));
+		return (free(anchor), write(1, "KO\n", 3));
 }

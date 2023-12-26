@@ -6,18 +6,17 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:35:47 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/26 04:26:25 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/26 05:05:26 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_BONUS_H
 # define PUSH_SWAP_BONUS_H
 
-# define BUFFER_SIZE 10
+# define BUFFER_SIZE 1
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <limits.h>
 # include "libftprintf/ft_printf.h"
 # include "libft/libft.h"
 
@@ -48,7 +47,7 @@ t_stack	*ft_get_stack(int argc, char *argv[]);
 /*			functions			*/
 char	*ft_fstrjoin(char *istr, char *buffer);
 char	*ft_read(int fd, char *buffer);
-void	ft_apply_istr(t_stack *a, t_stack *b, char **istr);
+int		ft_apply_istr(t_stack *a, t_stack *b, char **istr);
 
 /*			instructions			*/
 void	swap(t_stack *a, t_stack *b);

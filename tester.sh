@@ -13,7 +13,7 @@ do
 	ARG=`ruby -e "puts (0..99).to_a.shuffle.join(' ')"`
 	A=`./push_swap $ARG`
 	N=`./push_swap $ARG | wc -l`
-	V=$(./push_swap $ARG | ./checker_linux $ARG)
+	V=$(./push_swap $ARG | ./checker_Mac $ARG)
 	i=$(($i + 1))
 	T=$(($T + $N))
 	MIN=$(($MIN > $N ? $N : $MIN))
