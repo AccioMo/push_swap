@@ -6,13 +6,13 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 17:23:56 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/26 05:10:58 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/27 19:30:13 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_getlen(char **array)
+static int	ft_getlen(char **array)
 {
 	int	len;
 
@@ -22,34 +22,7 @@ int	ft_getlen(char **array)
 	return (len);
 }
 
-int	*ft_get_nbs(char **input, int len)
-{
-	int		*nbs;
-
-	if (ft_check_input(input, len))
-		return (write(2, "Error\n", 6), NULL);
-	nbs = (int *)malloc(len * sizeof(int));
-	if (!nbs)
-		return (NULL);
-	while (len--)
-		*(nbs + len) = ft_atoi(*(input + len));
-	return (nbs);
-}
-
-void	ft_free(char **input)
-{
-	int	i;
-
-	i = 0;
-	while (*(input + i))
-	{
-		free(*(input + i));
-		i++;
-	}
-	free(input);
-}
-
-int	ft_check_input(char **input, int len)
+static int	ft_check_input(char **input, int len)
 {
 	char	*str;
 	int		i;
@@ -76,6 +49,33 @@ int	ft_check_input(char **input, int len)
 	}
 	input -= len;
 	return (0);
+}
+
+static int	*ft_get_nbs(char **input, int len)
+{
+	int		*nbs;
+
+	if (ft_check_input(input, len))
+		return (write(2, "Error\n", 6), NULL);
+	nbs = (int *)malloc(len * sizeof(int));
+	if (!nbs)
+		return (NULL);
+	while (len--)
+		*(nbs + len) = ft_atoi(*(input + len));
+	return (nbs);
+}
+
+static void	ft_free(char **input)
+{
+	int	i;
+
+	i = 0;
+	while (*(input + i))
+	{
+		free(*(input + i));
+		i++;
+	}
+	free(input);
 }
 
 t_stack	*ft_get_stack(int argc, char *argv[])

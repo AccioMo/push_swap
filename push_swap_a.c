@@ -6,13 +6,13 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 17:12:39 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/26 02:53:34 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/27 16:57:23 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_get_costs(t_stack *a, t_stack *b, int len_a, int len_b)
+static void	ft_get_costs(t_stack *a, t_stack *b, int len_a, int len_b)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ void	ft_get_costs(t_stack *a, t_stack *b, int len_a, int len_b)
 	}
 }
 
-t_stack	*ft_barter(t_stack *stack)
+static t_stack	*ft_barter(t_stack *stack)
 {
 	t_stack	*best;
 	int		to_best;
@@ -44,7 +44,7 @@ t_stack	*ft_barter(t_stack *stack)
 	return (best);
 }
 
-void	ft_push_a(t_stack **a, t_stack **b)
+static void	ft_push_a(t_stack **a, t_stack **b)
 {
 	int	len_b;
 

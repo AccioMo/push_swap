@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap_rotations.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:35:50 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/25 17:14:13 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/27 18:07:58 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_rr(t_stack *a, t_stack *b)
+static void	ft_rr(t_stack *a, t_stack *b)
 {
 	rotate_up(a);
 	rotate_up(b);
 	write(1, "rr\n", 3);
 }
 
-void	ft_rrr(t_stack *a, t_stack *b)
+static void	ft_rrr(t_stack *a, t_stack *b)
 {
 	rotate_down(a);
 	rotate_down(b);

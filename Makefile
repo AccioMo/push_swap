@@ -2,7 +2,7 @@ CC = cc
 FLAGS = -Wall -Wextra -Werror
 NAME = push_swap
 BONUS_NAME = checker
-LIBFT = libft/libft.a
+LIBFT = libft.a
 LIBFT_DIR = libft/
 HEADER = push_swap.h
 BONUS_HEADER = push_swap_bonus.h
@@ -24,8 +24,8 @@ $(BONUS_NAME): $(BONUS_SRC_O) $(BONUS_HEADER) $(LIBFT)
 %.o: %.c
 	$(CC) $(FLAGS) -c $< -o $@
 
-$(LIBFT): $(LIBFT_DIR)
-	make -C $<
+%.a: %/
+	make -C $< && cp $<$@ .
 
 clean:
 	rm -f $(SRC_O) $(BONUS_SRC_O)

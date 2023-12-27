@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 04:05:37 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/26 05:05:04 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/27 19:32:07 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static int	ft_status_code(t_stack **a, t_stack **b, char *istr)
 	return (0);
 }
 
-int	ft_apply_istr(t_stack *a, t_stack *b, char **istr)
+int	ft_apply_instructions(t_stack *a, t_stack *b, char **istr)
 {
 	t_stack	*anchor;
 
