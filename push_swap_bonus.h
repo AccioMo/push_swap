@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:35:47 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/27 19:36:05 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/28 00:22:27 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*ft_read(int fd, char *buffer);
 int		ft_apply_instructions(t_stack *a, t_stack *b, char **istr);
 
 /*			instructions			*/
-void	swap(t_stack *a, t_stack *b);
+void	swap(t_stack *one);
 void	swap_both(t_stack *a, t_stack *b);
 void	push_a(t_stack **a, t_stack **b);
 void	push_b(t_stack **a, t_stack **b);

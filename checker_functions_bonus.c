@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 04:05:37 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/27 19:32:07 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/28 00:20:19 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ char	*ft_read(int fd, char *buffer)
 static int	ft_status_code(t_stack **a, t_stack **b, char *istr)
 {
 	if (!ft_strncmp(istr, "sa", -1))
-		swap(*a, (*a)->next);
+		swap(*a);
 	else if (!ft_strncmp(istr, "sb", -1))
-		swap(*b, (*b)->next);
+		swap(*b);
 	else if (!ft_strncmp(istr, "ss", -1))
 		swap_both(*a, (*b));
 	else if (!ft_strncmp(istr, "ra", -1))

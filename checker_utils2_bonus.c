@@ -6,62 +6,76 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 03:19:29 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/26 04:18:48 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/12/28 00:49:28 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
 
-void	swap(t_stack *a, t_stack *b)
+void	swap(t_stack *one)
 {
 	t_stack	c;
+	t_stack	*two;
 
-	if (!a || !b)
+	if (!one || !(one->next))
 		return ;
-	c = *a;
-	*a = *b;
-	*b = c;
-	b->next = a->next;
-	a->next = b;
-	a->index -= 1;
-	b->index += 1;
+	two = one->next;
+	c = *one;
+	*one = *two;
+	*two = c;
+	two->next = one->next;
+	one->next = two;
+	one->index -= 1;
+	two->index += 1;
 }
 
 void	swap_both(t_stack *a, t_stack *b)
 {
-	if (!a || !b)
-		return ;
-	swap(a, a->next);
-	swap(b, b->next);
+	swap(a);
+	swap(b);
 }
 
 void	push_a(t_stack **a, t_stack **b)
 {
-	int	len_b;
+	t_stack	*a_start;
+	t_stack	*b_end;
 
 	if (!*b)
 		return ;
-	len_b = ft_stack_len(*b);
 	rotate(*b);
-	(*b + len_b - 1)->next = *a;
-	*a -= 1;
-	if (*a == *b)
+	b_end = *b;
+	if (!(b_end->next))
+	{
+		*a = *b;
 		*b = NULL;
-	else
-		(*b + len_b - 2)->next = NULL;
+		return ;
+	}
+	while (b_end->next->next)
+		b_end = b_end->next;
+	a_start = b_end->next;
+	b_end->next = NULL;
+	a_start->next = *a;
+	*a = a_start;
 }
 
 void	push_b(t_stack **a, t_stack **b)
 {
+	t_stack	*b_clone;
+	t_stack	*b_end;
+
 	if (!*a)
 		return ;
+	b_clone = *b;
+	b_end = *a;
 	*a = (*a)->next;
-	(*a - 1)->next = NULL;
+	b_end->next = NULL;
 	if (*b)
 	{
-		(*a - 2)->next = (*a - 1);
+		while (b_clone->next)
+			b_clone = b_clone->next;
+		b_clone->next = b_end;
 		reverse_rotate(*b);
 	}
 	else
-		*b = (*a - 1);
+		*b = b_end;
 }

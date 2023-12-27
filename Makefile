@@ -2,7 +2,7 @@ CC = cc
 FLAGS = -Wall -Wextra -Werror
 NAME = push_swap
 BONUS_NAME = checker
-LIBFT = libft.a
+LIBFT = libft/libft.a
 LIBFT_DIR = libft/
 HEADER = push_swap.h
 BONUS_HEADER = push_swap_bonus.h
@@ -11,21 +11,21 @@ SRC_O = $(SRC:.c=.o)
 BONUS_SRC = checker_main_bonus.c checker_functions_bonus.c checker_tools_bonus.c checker_utils2_bonus.c checker_utils_bonus.c checker_input_bonus.c
 BONUS_SRC_O = $(BONUS_SRC:.c=.o)
 
-all: $(NAME)
+all: $(LIBFT) $(NAME)
 
-$(NAME): $(SRC_O) $(HEADER) $(LIBFT)
+$(NAME): $(SRC_O) $(HEADER)
 	$(CC) $(FLAGS) $(SRC_O) $(LIBFT) -o $(NAME)
 
-bonus: $(BONUS_NAME)
+bonus: $(LIBFT) $(BONUS_NAME)
 
-$(BONUS_NAME): $(BONUS_SRC_O) $(BONUS_HEADER) $(LIBFT)
+$(BONUS_NAME): $(BONUS_SRC_O) $(BONUS_HEADER)
 	$(CC) $(FLAGS) $(BONUS_SRC_O) $(LIBFT) -o $(BONUS_NAME)
 
 %.o: %.c
 	$(CC) $(FLAGS) -c $< -o $@
 
-%.a: %/
-	make -C $< && cp $<$@ .
+$(LIBFT): $(LIBFT_DIR)
+	make -C $(LIBFT_DIR)
 
 clean:
 	rm -f $(SRC_O) $(BONUS_SRC_O)
@@ -35,4 +35,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re bonus $(LIBFT)
