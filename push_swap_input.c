@@ -88,7 +88,7 @@ t_stack	*ft_get_stack(int argc, char *argv[])
 		exit(0);
 	else if (argc == 2)
 	{
-		input = ft_split(ft_strdup(*(argv + 1)), ' ');
+		input = ft_split(*(argv + 1), ' ');
 		len = ft_getlen(input);
 		nbs = ft_get_nbs(input, len);
 		ft_free(input);
