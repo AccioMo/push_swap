@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 03:19:29 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/28 00:49:28 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2024/01/02 23:45:54 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	push_a(t_stack **a, t_stack **b)
 	b_end = *b;
 	if (!(b_end->next))
 	{
+		(*b)->next = *a;
 		*a = *b;
 		*b = NULL;
 		return ;
