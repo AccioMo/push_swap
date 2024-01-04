@@ -6,11 +6,11 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 17:23:56 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/27 19:35:51 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2024/01/04 17:45:49 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_bonus.h"
 
 static int	ft_getlen(char **array)
 {

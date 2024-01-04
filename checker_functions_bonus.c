@@ -6,97 +6,54 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 04:05:37 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/28 00:20:19 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2024/01/04 20:49:11 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap_bonus.h"
-
-static char	*ft_strncpy(char *dest, char *src, int n)
-{
-	while (n > 0 && *src)
-	{
-		*dest = *src;
-		dest++;
-		src++;
-		n--;
-	}
-	*dest = '\0';
-	return (dest);
-}
-
-char	*ft_realloc(char *istr, char *buffer)
-{
-	char	*str;
-	int		l_istr;
-	int		l_buffer;
-
-	if (buffer == NULL)
-		return (istr);
-	l_istr = ft_strlen(istr);
-	l_buffer = ft_strlen(buffer);
-	str = (char *)malloc(sizeof(char) * (l_istr + l_buffer + 1));
-	if (!str)
-		return (free(istr), NULL);
-	ft_strncpy(ft_strncpy(str, istr, l_istr), buffer, l_buffer);
-	if (istr)
-		free(istr);
-	return (str);
-}
-
-char	*ft_read(int fd, char *buffer)
-{
-	int	rd;
-
-	rd = read(fd, buffer, BUFFER_SIZE);
-	if (rd == 0)
-	{
-		free(buffer);
-		return (NULL);
-	}
-	*(buffer + rd) = '\0';
-	return (buffer);
-}
+#include "checker_bonus.h"
 
 static int	ft_status_code(t_stack **a, t_stack **b, char *istr)
 {
-	if (!ft_strncmp(istr, "sa", -1))
+	if (!ft_strncmp(istr, "sa\n", -1))
 		swap(*a);
-	else if (!ft_strncmp(istr, "sb", -1))
+	else if (!ft_strncmp(istr, "sb\n", -1))
 		swap(*b);
-	else if (!ft_strncmp(istr, "ss", -1))
+	else if (!ft_strncmp(istr, "ss\n", -1))
 		swap_both(*a, (*b));
-	else if (!ft_strncmp(istr, "ra", -1))
+	else if (!ft_strncmp(istr, "ra\n", -1))
 		rotate(*a);
-	else if (!ft_strncmp(istr, "rb", -1))
+	else if (!ft_strncmp(istr, "rb\n", -1))
 		rotate(*b);
-	else if (!ft_strncmp(istr, "rra", -1))
+	else if (!ft_strncmp(istr, "rra\n", -1))
 		reverse_rotate(*a);
-	else if (!ft_strncmp(istr, "rrb", -1))
+	else if (!ft_strncmp(istr, "rrb\n", -1))
 		reverse_rotate(*b);
-	else if (!ft_strncmp(istr, "rr", -1))
+	else if (!ft_strncmp(istr, "rr\n", -1))
 		rotate_both(*a, (*b));
-	else if (!ft_strncmp(istr, "rrr", -1))
+	else if (!ft_strncmp(istr, "rrr\n", -1))
 		reverse_rotate_both(*a, (*b));
-	else if (!ft_strncmp(istr, "pa", -1))
+	else if (!ft_strncmp(istr, "pa\n", -1))
 		push_a(a, b);
-	else if (!ft_strncmp(istr, "pb", -1))
+	else if (!ft_strncmp(istr, "pb\n", -1))
 		push_b(a, b);
 	else
 		return (1);
 	return (0);
 }
 
-int	ft_apply_instructions(t_stack *a, t_stack *b, char **istr)
+int	ft_apply_instructions(t_stack *a, t_stack *b)
 {
 	t_stack	*anchor;
+	char	*istr;
 
 	anchor = a;
-	while (*istr)
+	istr = "";
+	while (istr)
 	{
-		if (ft_status_code(&a, &b, *istr) == 1)
-			return (free(anchor), write(2, "Error\n", 6));
-		istr++;
+		istr = get_next_line(0);
+		if (istr && ft_status_code(&a, &b, istr) == 1)
+			return (free(istr), free(anchor), write(2, "Error\n", 6));
+		free(istr);
 	}
 	if (ft_sorted(a) && b == NULL)
 		return (free(anchor), write(1, "OK\n", 3));

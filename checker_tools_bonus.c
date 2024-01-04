@@ -6,11 +6,11 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 03:20:38 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/26 04:00:25 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2024/01/04 18:08:30 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap_bonus.h"
+#include "checker_bonus.h"
 
 static int	get_z_index(int *nbs, int target, int len)
 {

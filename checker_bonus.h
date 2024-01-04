@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_bonus.h                                  :+:      :+:    :+:   */
+/*   checker_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,14 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_BONUS_H
-# define PUSH_SWAP_BONUS_H
-
-# define BUFFER_SIZE 1
+#ifndef CHECKER_BONUS_H
+# define CHECKER_BONUS_H
 
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft/libft.h"
+# include "get_next_line/get_next_line.h"
 
 /*			structs			*/
 typedef struct s_stack
@@ -41,9 +40,7 @@ t_stack	*ft_get_stack(int argc, char *argv[]);
 void	ft_free(char **input);
 
 /*			functions			*/
-char	*ft_realloc(char *istr, char *buffer);
-char	*ft_read(int fd, char *buffer);
-int		ft_apply_instructions(t_stack *a, t_stack *b, char **istr);
+int		ft_apply_instructions(t_stack *a, t_stack *b);
 
 /*			instructions			*/
 void	swap(t_stack *one);

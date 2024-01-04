@@ -6,11 +6,11 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 03:10:44 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/28 00:25:52 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2024/01/04 17:46:04 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap_bonus.h"
+#include "checker_bonus.h"
 
 void	rotate(t_stack *stack)
 {

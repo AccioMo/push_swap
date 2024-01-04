@@ -6,13 +6,13 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 20:47:41 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/12/26 05:12:11 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2024/01/04 18:06:42 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	is_sep(char *s, char c)
+static int	is_sep(const char *s, char c)
 {
 	if (*s != c && (*(s + 1) == c || *(s + 1) == '\0'))
 		return (1);
@@ -20,7 +20,7 @@ static int	is_sep(char *s, char c)
 		return (0);
 }
 
-static int	count_words(char *s, char c)
+static int	count_words(const char *s, char c)
 {
 	int	words;
 
@@ -34,7 +34,7 @@ static int	count_words(char *s, char c)
 	return (words);
 }
 
-static char	*assign_word(char **tab, char *s, char c)
+static const char	*assign_word(char **tab, const char *s, char c)
 {
 	int	len;
 
@@ -62,7 +62,7 @@ static void	ft_freeall(void **ptr, void *end)
 	free(ptr);
 }
 
-char	**ft_split(char *s, char c)
+char	**ft_split(const char *s, char c)
 {
 	char	**tab;
 	int		words;
